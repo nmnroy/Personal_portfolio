@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naman Roy — Work Samples</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0b1218;
+    --surface: rgba(13, 27, 37, 0.82);
+    --surface2: rgba(21, 39, 52, 0.82);
+    --border: rgba(166, 214, 255, 0.12);
+    --border2: rgba(166, 214, 255, 0.24);
+    --text: #e6f3ff;
+    --text2: #9ab3c7;
+    --text3: #6e879a;
+    --accent: #31c3ff;
+    --accent2: #72d8ff;
+    --accent3: #ffb74d;
+    --green: #34d399;
+    --amber: #fbbf24;
+    --pink: #f472b6;
+    --teal: #2dd4bf;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background:
+      radial-gradient(circle at 8% 15%, rgba(49, 195, 255, 0.18), transparent 30%),
+      radial-gradient(circle at 85% 10%, rgba(255, 183, 77, 0.14), transparent 32%),
+      radial-gradient(circle at 78% 78%, rgba(52, 211, 153, 0.13), transparent 32%),
+      linear-gradient(150deg, #081018 0%, #0b1218 48%, #111a22 100%);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; opacity: 0.35;
+  }
+
+  .background-orbs {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(6px);
+    opacity: 0.35;
+    animation: float 14s ease-in-out infinite;
+  }
+  .orb.one {
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(49, 195, 255, 0.65), rgba(49, 195, 255, 0.05));
+    top: 8%; left: -5%;
+  }
+  .orb.two {
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(255, 183, 77, 0.55), rgba(255, 183, 77, 0.02));
+    right: -7%; top: 24%;
+    animation-delay: 1.8s;
+  }
+  .orb.three {
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(45, 212, 191, 0.6), rgba(45, 212, 191, 0.03));
+    left: 62%; bottom: -6%;
+    animation-delay: 3.5s;
+  }
+
+  .page { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 60px 32px 80px; }
+
+  /* ---- HEADER ---- */
+  .header {
+    margin-bottom: 56px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .hero-panel,
+  .hero-visual {
+    background: linear-gradient(160deg, rgba(10, 20, 29, 0.8) 0%, rgba(16, 32, 42, 0.78) 100%);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 44px rgba(3, 11, 18, 0.34);
+  }
+  .hero-panel { padding: 30px 30px 26px; }
+  .hero-panel::before,
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(114, 216, 255, 0.85) 50%, transparent 100%);
+  }
+
+  .header-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent3);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .header-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--accent3);
+  }
+
+  .header-name {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6vw, 60px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .header-role {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text2);
+    margin-bottom: 22px;
+  }
+
+  .hero-intro {
+    font-size: 13px;
+    color: var(--text2);
+    max-width: 54ch;
+    margin-bottom: 18px;
+  }
+
+  .header-links { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .link-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text2);
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 99px;
+    padding: 6px 14px;
+    text-decoration: none;
+    transition: all 0.22s ease;
+  }
+  .link-pill:hover {
+    color: var(--text);
+    border-color: rgba(114, 216, 255, 0.85);
+    background: rgba(49, 195, 255, 0.12);
+    transform: translateY(-1px);
+  }
+  .link-pill svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+  .hero-visual {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .signal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 12px;
+    background: rgba(49, 195, 255, 0.08);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent2);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .signal strong {
+    color: var(--text);
+    font-size: 17px;
+    letter-spacing: -0.02em;
+  }
+
+  .visual-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .mini {
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: rgba(11, 25, 34, 0.9);
+    padding: 12px;
+  }
+
+  .mini-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--text3);
+    margin-bottom: 8px;
+  }
+
+  .mini-bar {
+    width: 100%;
+    height: 7px;
+    border-radius: 99px;
+    background: rgba(166, 214, 255, 0.12);
+    overflow: hidden;
+  }
+
+  .mini-bar > span {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+  }
+
+  .mini-value {
+    margin-top: 6px;
+    font-family: var(--font-display);
+    color: var(--text);
+    font-size: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---- DIVIDER ---- */
+  .divider { height: 1px; background: linear-gradient(90deg, var(--accent3) 0%, transparent 75%); margin: 48px 0 36px; opacity: 0.42; }
+
+  /* ---- SECTION LABEL ---- */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
+
+  /* ---- PROJECT CARD ---- */
+  .project-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.22s;
+  }
+  .card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  }
+  .card:hover {
+    border-color: var(--border2);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 32px rgba(3, 13, 20, 0.4);
+  }
+
+  .card.featured {
+    border-color: rgba(114, 216, 255, 0.34);
+    background: linear-gradient(135deg, rgba(9, 24, 36, 0.9) 0%, rgba(13, 37, 46, 0.84) 100%);
+  }
+  .card.featured::after {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+    background: linear-gradient(180deg, var(--accent), var(--accent3));
+    border-radius: 16px 0 0 16px;
+  }
+
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0em;
+  }
+
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 99px;
+    flex-shrink: 0;
+    border: 1px solid;
+  }
+  .badge-purple { color: var(--accent2); border-color: rgba(124,106,255,0.3); background: rgba(124,106,255,0.08); }
+  .badge-green  { color: var(--green);  border-color: rgba(52,211,153,0.3);  background: rgba(52,211,153,0.06); }
+  .badge-amber  { color: var(--amber);  border-color: rgba(251,191,36,0.3);  background: rgba(251,191,36,0.06); }
+  .badge-pink   { color: var(--pink);   border-color: rgba(244,114,182,0.3); background: rgba(244,114,182,0.06); }
+  .badge-teal   { color: var(--teal);   border-color: rgba(45,212,191,0.3);  background: rgba(45,212,191,0.06); }
+
+  .card-desc {
+    font-size: 13.5px;
+    color: var(--text2);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .tech-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+
+  .tech {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text3);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+  }
+
+  .card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+  .card-links { display: flex; gap: 16px; }
+
+  .card-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent2);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 5px;
+    transition: color 0.15s;
+  }
+  .card-link:hover { color: var(--text); }
+  .card-link svg { width: 12px; height: 12px; }
+
+  .highlight-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--green);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .highlight-tag::before { content: '✦'; font-size: 9px; }
+
+  /* ---- STATS ROW ---- */
+  .stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 48px; }
+  .stat-card {
+    background: linear-gradient(160deg, rgba(12, 26, 35, 0.82) 0%, rgba(15, 33, 45, 0.72) 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .stat-label { font-family: var(--font-mono); font-size: 11px; color: var(--text3); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 2px; }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-note { font-family: var(--font-mono); font-size: 11px; color: var(--text3); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: revealUp 0.8s ease forwards;
+  }
+  .header { animation-delay: 0.1s; }
+  .stats-row { animation-delay: 0.22s; }
+  .project-grid .card:nth-child(1) { animation-delay: 0.28s; }
+  .project-grid .card:nth-child(2) { animation-delay: 0.34s; }
+  .project-grid .card:nth-child(3) { animation-delay: 0.4s; }
+  .project-grid .card:nth-child(4) { animation-delay: 0.46s; }
+  .project-grid .card:nth-child(5) { animation-delay: 0.52s; }
+
+  @keyframes revealUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-18px); }
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 40px 20px 60px; }
+    .header { grid-template-columns: 1fr; }
+    .hero-panel { padding: 24px 20px; }
+    .hero-visual { padding: 20px; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .card-header { flex-direction: column; gap: 8px; }
+    .orb { opacity: 0.25; }
+  }
+
+  @media (max-width: 840px) {
+    .header { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="background-orbs" aria-hidden="true">
+  <span class="orb one"></span>
+  <span class="orb two"></span>
+  <span class="orb three"></span>
+</div>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header reveal">
+    <div class="hero-panel">
+      <p class="header-eyebrow">Work Samples · May 2026</p>
+      <h1 class="header-name">Naman</h1>
+      <p class="header-role">Full-Stack AI Engineer · Delhi, India</p>
+      <p class="hero-intro">I build AI-native products across education, commerce, and multimodal workflows. This portfolio highlights shipped systems, live deployments, and production-ready engineering depth.</p>
+      <div class="header-links">
+        <a class="link-pill" href="https://github.com/nmnroy" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        github.com/nmnroy
+        </a>
+        <a class="link-pill" href="https://naman-prompt-cinema.netlify.app/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Portfolio
+        </a>
+        <a class="link-pill" href="mailto:namanroy0044@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        namanroy0044@gmail.com
+        </a>
+        <a class="link-pill" href="https://www.linkedin.com/in/naman-roy-190105291/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <aside class="hero-visual" aria-label="Portfolio at a glance">
+      <div class="signal">
+        <span>Focus</span>
+        <strong>AI x Product</strong>
+      </div>
+      <div class="visual-grid">
+        <div class="mini">
+          <p class="mini-label">Deployments</p>
+          <div class="mini-bar"><span style="width: 86%"></span></div>
+          <p class="mini-value">5 live apps</p>
+        </div>
+        <div class="mini">
+          <p class="mini-label">Build velocity</p>
+          <div class="mini-bar"><span style="width: 92%"></span></div>
+          <p class="mini-value">Rapid iteration</p>
+        </div>
+        <div class="mini">
+          <p class="mini-label">Domains</p>
+          <div class="mini-bar"><span style="width: 78%"></span></div>
+          <p class="mini-value">EdTech to FMCG</p>
+        </div>
+        <div class="mini">
+          <p class="mini-label">Infra</p>
+          <div class="mini-bar"><span style="width: 88%"></span></div>
+          <p class="mini-value">Full stack AI</p>
+        </div>
+      </div>
+    </aside>
+  </header>
+
+  <!-- STATS -->
+  <div class="stats-row reveal">
+    <div class="stat-card reveal">
+      <p class="stat-number">7</p>
+      <p class="stat-label">Projects Shipped</p>
+    </div>
+    <div class="stat-card reveal">
+      <p class="stat-number">5</p>
+      <p class="stat-label">Live Deployments</p>
+    </div>
+    <div class="stat-card reveal">
+      <p class="stat-number">4+</p>
+      <p class="stat-label">AI Stacks Used</p>
+    </div>
+    <div class="stat-card reveal">
+      <p class="stat-number">100%</p>
+      <p class="stat-label">Hands-on Build</p>
+    </div>
+  </div>
+
+  <!-- FEATURED -->
+  <p class="section-label">Highlighted for VedaAI</p>
+  <div class="project-grid">
+
+    <!-- StudySketch -->
+    <div class="card featured reveal">
+      <div class="card-header">
+        <h2 class="card-title">StudySketch AI</h2>
+        <span class="badge badge-purple">EdTech · Most Relevant</span>
+      </div>
+      <p class="card-desc">Privacy-first AI study companion that converts notes, PDFs, and images into interactive mind maps, flashcards, summaries, and quizzes — running 100% offline via local LLM inference. No data leaves the device. Directly aligned with VedaAI's mission of transforming educational assessments with AI.</p>
+      <div class="tech-row">
+        <span class="tech">React 19</span>
+        <span class="tech">TypeScript</span>
+        <span class="tech">Ollama (Local LLM)</span>
+        <span class="tech">Transformers.js</span>
+        <span class="tech">Mermaid.js</span>
+        <span class="tech">Tesseract OCR</span>
+        <span class="tech">Vite</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a class="card-link" href="https://github.com/nmnroy/study-sketch" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+        </div>
+        <span class="highlight-tag">Mind maps · Flashcards · Quiz mode · Voice · Anki export · 100% offline</span>
+      </div>
+    </div>
+
+    <!-- FMCG -->
+    <div class="card featured reveal">
+      <div class="card-header">
+        <h2 class="card-title">FMCG/CPG RFP Automation Agent</h2>
+        <span class="badge badge-green">Production · Live</span>
+      </div>
+      <p class="card-desc">End-to-end multi-agent AI system converting unstructured PDF/text RFPs into GST-inclusive, margin-optimised quotes in seconds. Five-agent pipeline: intake → semantic SKU matching → LLM pricing → sales intelligence → proposal generation. Includes a RAG-powered "Ask the Data" assistant over historical RFP datasets.</p>
+      <div class="tech-row">
+        <span class="tech">Python</span><span class="tech">LangChain</span><span class="tech">ChromaDB</span><span class="tech">Pandas</span><span class="tech">Streamlit</span><span class="tech">RAG</span><span class="tech">Multi-Agent Orchestration</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a class="card-link" href="https://github.com/nmnroy/fmcg-" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+          <a class="card-link" href="https://fmcgagenticai.streamlit.app/" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live Demo
+          </a>
+        </div>
+        <span class="highlight-tag">Hours → seconds · hybrid AI + rule-based · human-in-loop</span>
+      </div>
+    </div>
+
+    <!-- KaarigarAI -->
+    <div class="card featured reveal">
+      <div class="card-header">
+        <h2 class="card-title">KaarigarAI</h2>
+        <span class="badge badge-teal">Multimodal · WhatsApp API</span>
+      </div>
+      <p class="card-desc">AI-powered marketplace assistant for Indian artisans — converts product photos into SEO-ready listings, heritage stories, smart pricing strategies, and social captions. Supports English, Hindi, Tamil, and Bengali. WhatsApp webhook via Twilio lets rural artisans interact using just a photo and voice note — no software skills needed.</p>
+      <div class="tech-row">
+        <span class="tech">React</span><span class="tech">Node.js</span><span class="tech">Gemini 1.5 Pro Vision</span><span class="tech">Twilio WhatsApp API</span><span class="tech">Google Cloud Translation</span><span class="tech">Tailwind CSS</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a class="card-link" href="https://github.com/nmnroy/KaarigarAI" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+        </div>
+        <span class="highlight-tag">4 languages · multimodal vision · WhatsApp · built-in pitch deck</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- OTHER PROJECTS -->
+  <p class="section-label">Other Projects</p>
+  <div class="project-grid">
+
+    <!-- Interview Prep -->
+    <div class="card reveal">
+      <div class="card-header">
+        <h2 class="card-title">AI-Powered Interview Prep Ecosystem</h2>
+        <span class="badge badge-amber">Full-Stack · Live</span>
+      </div>
+      <p class="card-desc">Cross-platform app in Next.js and React Native integrating Gemini 2.5 Flash for LLM-based answer evaluation across clarity, completeness, and structure. Multi-key inference fallback for zero-downtime, Supabase PostgreSQL data models, Recharts analytics dashboard, and a JD-based dynamic question generator. Deployed on Vercel with CI/CD.</p>
+      <div class="tech-row">
+        <span class="tech">Next.js</span><span class="tech">React Native</span><span class="tech">TypeScript</span><span class="tech">Supabase</span><span class="tech">Gemini API</span><span class="tech">Recharts</span><span class="tech">Vercel</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a class="card-link" href="https://github.com/nmnroy/-AI-Powered-Interview" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+          <a class="card-link" href="https://ai-powered-interview-46g2.vercel.app/" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live Demo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BlogzzUP -->
+    <div class="card reveal">
+      <div class="card-header">
+        <h2 class="card-title">BlogzzUP — AI SEO Content Engine</h2>
+        <span class="badge badge-amber">SaaS · Live</span>
+      </div>
+      <p class="card-desc">Generative AI SaaS for automated SEO content generation. Backend LLM inference workflows, real-time scoring API integration, voice input for unstructured data, Google OAuth, Firebase backend. Full deployment on Netlify with clean, documented architecture.</p>
+      <div class="tech-row">
+        <span class="tech">React.js</span><span class="tech">Node.js</span><span class="tech">Firebase</span><span class="tech">REST APIs</span><span class="tech">Netlify</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a class="card-link" href="https://github.com/nmnroy/BlogzzUP" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+          <a class="card-link" href="https://blogzzup.netlify.app" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live Demo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio -->
+    <div class="card reveal">
+      <div class="card-header">
+        <h2 class="card-title">Cinematic AI Portfolio</h2>
+        <span class="badge badge-pink">Design · Live</span>
+      </div>
+      <p class="card-desc">High-performance interactive portfolio at the intersection of Creative Direction and Generative AI. Custom dark-mode cinematic interface with React and Framer Motion — featuring prompt engineering case studies, character consistency stress tests, and the Neon Ronin series.</p>
+      <div class="tech-row">
+        <span class="tech">React</span><span class="tech">Framer Motion</span><span class="tech">Netlify</span><span class="tech">Prompt Engineering</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a class="card-link" href="https://github.com/nmnroy/portfolio" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+          <a class="card-link" href="https://naman-prompt-cinema.netlify.app/" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live Demo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CWT -->
+    <div class="card reveal">
+      <div class="card-header">
+        <h2 class="card-title">CWT Predictions</h2>
+        <span class="badge badge-teal">ML · Data Science</span>
+      </div>
+      <p class="card-desc">Cricket World Tournament match outcome prediction model using historical match data, feature engineering, and ML classification techniques. Demonstrates applied data science and Python data pipeline skills.</p>
+      <div class="tech-row">
+        <span class="tech">Python</span><span class="tech">Machine Learning</span><span class="tech">Pandas</span><span class="tech">Data Analysis</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a class="card-link" href="https://github.com/nmnroy/CWT-Predictions" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer reveal">
+    <p class="footer-note">Naman Roy · namanroy0044@gmail.com · May 2026</p>
+    <p class="footer-note">All projects built independently — no templates, no boilerplate</p>
+  </footer>
+
+</div>
+</body>
+</html>
